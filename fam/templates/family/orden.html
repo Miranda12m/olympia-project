@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block tittle %} Home {% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Order Summary</h4>
+        <p><strong>Product Name:</strong> {{ product.name }}</p>
+        <p><strong>Price per Unit:</strong> ${{ product.price }} MXN</p>
+        <p><strong>Quantity:</strong> {{ quantity }}</p>
+        <p><strong>Total Price:</strong> ${{ total_price }} MXN</p>
+        <p><strong>Description:</strong> {{ product.description }}</p>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" height="125px">
+    </div>
+</div>
+
+{% endblock %}

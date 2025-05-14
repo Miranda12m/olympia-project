@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block tittle %} Home {% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Productos Disponibles</h4>
+
+        <div class="table-responsive">
+            <table class="table table-primary">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Imagen</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for family in familys %}
+                    <tr>
+                        <td>{{ family.id }}</td>
+                        <td>{{ family.name }}</td>
+                        <td>${{ family.price }} MXN</td>
+                        <td>({{ family.stock }}) Unidades Disponibles</td>
+
+                        <td>
+                            <img src="{{ family.image.url }}" height="125px">
+                        </td>
+                        <td>{{ family.description }}</td>
+                        <form method="POST" action="{% url 'orden' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="product_id" value="{{ family.id }}">
+                            <td>
+                                <input type="number" class="form-control" name="quantity" min="1" max="{{ family.stock }}" value="1">
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-success">Place Order</button>
+                            </td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        
+        
+    </div>
+</div>
+
+{% endblock %}

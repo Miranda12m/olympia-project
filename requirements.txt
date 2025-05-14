@@ -1,0 +1,5 @@
+Django
+PyMySQL
+Pillow
+pytz
+pathlib
